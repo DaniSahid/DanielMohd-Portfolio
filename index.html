@@ -1,1793 +1,1050 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>
-      Muhammad Daniel | Portfolio
-    </title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Poppins',sans-serif;background:#fff;color:#222;line-height:1.65}
-
-    /* SIDEBAR */
-    #sidebar{position:fixed;top:0;left:0;width:230px;height:100vh;background:#fff;border-right:1px solid #e8e8e8;display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;z-index:200;overflow-y:auto;}
-    #sidebar .s-name{font-size:.82rem;font-weight:700;text-align:center;color:#1e1b2e;margin-bottom:.15rem;line-height:1.3}
-    #sidebar .s-role{font-size:.7rem;color:#7c3aed;text-align:center;margin-bottom:1.4rem;font-weight:500}
-    #sidebar nav{width:100%}
-    #sidebar nav a{display:block;padding:.5rem .9rem;border-radius:8px;font-size:.78rem;font-weight:500;color:#555;text-decoration:none;transition:background .2s,color .2s;margin-bottom:.15rem;}
-    #sidebar nav a:hover,#sidebar nav a.active{background:#ede9fe;color:#7c3aed;font-weight:600}
-    #sidebar .s-links{display:flex;gap:.6rem;margin-top:1.4rem;flex-wrap:wrap;justify-content:center;}
-    #sidebar .s-links a{font-size:.7rem;padding:.35rem .7rem;border-radius:20px;border:1px solid #7c3aed;color:#7c3aed;text-decoration:none;font-weight:600;transition:background .2s;}
-    #sidebar .s-links a:hover{background:#ede9fe}
-
-    /* HAMBURGER */
-    #ham{display:none;position:fixed;top:14px;left:14px;z-index:300;background:#7c3aed;border:none;border-radius:8px;padding:.45rem .6rem;cursor:pointer;}
-    #ham span{display:block;width:20px;height:2px;background:#fff;margin:4px 0;border-radius:2px}
-
-    main{margin-left:230px;padding:3rem 3rem 4rem}
-
-    /* HERO */
-    #hero{display:flex;align-items:center;gap:2.5rem;padding:3rem 0 3.5rem;border-bottom:1px solid #f0f0f0;}
-    .hero-photo-wrap{width:150px;height:150px;min-width:150px;border-radius:50%;border:4px solid #7c3aed;overflow:hidden;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:4rem;}
-    .hero-photo-wrap img{width:100%;height:100%;object-fit:cover}
-    .hero-text h1{font-size:1.8rem;font-weight:700;color:#1e1b2e;line-height:1.2;margin-bottom:.3rem}
-    .hero-text .role{font-size:.88rem;color:#7c3aed;font-weight:600;margin-bottom:.6rem}
-    .hero-text .tagline{font-size:.88rem;color:#555;max-width:480px;line-height:1.7;margin-bottom:1rem}
-    .hero-btns{display:flex;gap:.7rem;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:.35rem;padding:.5rem 1.2rem;border-radius:8px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
-    .btn-fill{background:#7c3aed;color:#fff} .btn-fill:hover{background:#5b21b6}
-    .btn-out{border:1.5px solid #7c3aed;color:#7c3aed;background:transparent} .btn-out:hover{background:#ede9fe}
-
-    section{padding:2.8rem 0;border-bottom:1px solid #f0f0f0}
-    section:last-child{border-bottom:none}
-    .sec-title{font-size:1.25rem;font-weight:700;color:#1e1b2e;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:3px solid #7c3aed;display:inline-block;}
-
-    /* OBJECTIVE */
-    .objective-text{font-size:.9rem;color:#444;line-height:1.9;border-left:4px solid #7c3aed;padding-left:1.2rem;}
-
-    /* EDUCATION */
-    .edu-item{margin-bottom:1.6rem;display:flex;gap:1.2rem}
-    .edu-line{display:flex;flex-direction:column;align-items:center;padding-top:.3rem}
-    .edu-dot{width:13px;height:13px;min-width:13px;border-radius:50%;background:#7c3aed}
-    .edu-connector{flex:1;width:2px;background:#ddd;margin-top:.3rem}
-    .edu-period{font-size:.72rem;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
-    .edu-degree{font-weight:700;font-size:.95rem;color:#1e1b2e;margin-bottom:.1rem}
-    .edu-school{font-size:.82rem;color:#666;margin-bottom:.5rem}
-    .badges{display:flex;flex-wrap:wrap;gap:.4rem}
-    .badge{font-size:.7rem;font-weight:600;padding:.2rem .65rem;border-radius:20px;background:#ede9fe;color:#5b21b6}
-    .badge-gold{background:#fef3c7;color:#92400e}
-
-    /* SKILLS */
-    .skill-section{margin-bottom:1.8rem}
-    .skill-section-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7c3aed;margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem;}
-    .skill-section-title::after{content:'';flex:1;height:1px;background:#e5e7eb;}
-    .skill-icons{display:flex;flex-wrap:wrap;gap:1rem}
-    .skill-icon-item{display:flex;flex-direction:column;align-items:center;gap:.3rem;width:68px;text-align:center;}
-    .skill-icon-item img{width:36px;height:36px;object-fit:contain}
-    .skill-icon-item .si-label{font-size:.66rem;font-weight:500;color:#444;line-height:1.2}
-    .skill-text-item{display:inline-flex;align-items:center;gap:.4rem;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:8px;padding:.3rem .8rem;font-size:.78rem;font-weight:500;color:#3730a3;}
-
-    /* PROJECTS */
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
-    .proj-card{border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;background:#fff;}
-    .proj-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(124,58,237,.1)}
-    .proj-img{width:100%;height:160px;background:#f0ebff;display:flex;align-items:center;justify-content:center;font-size:3rem;overflow:hidden;}
-    .proj-img img{width:100%;height:100%;object-fit:cover}
-    .proj-body{padding:1.2rem}
-    .proj-award{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;color:#92400e;background:#fef3c7;padding:.2rem .6rem;border-radius:20px;margin-bottom:.55rem;}
-    .proj-ongoing{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;color:#065f46;background:#d1fae5;padding:.2rem .6rem;border-radius:20px;margin-bottom:.55rem;}
-    .proj-title{font-weight:700;font-size:.9rem;color:#1e1b2e;margin-bottom:.4rem;line-height:1.4}
-    .proj-desc{font-size:.8rem;color:#555;line-height:1.65;margin-bottom:.8rem}
-    .proj-tech{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.9rem}
-    .tech-tag{font-size:.68rem;padding:.18rem .55rem;border-radius:5px;background:#ede9fe;color:#5b21b6;font-weight:600}
-    .proj-date{font-size:.72rem;color:#999;margin-bottom:.9rem}
-    .btn-view{display:inline-flex;align-items:center;gap:.3rem;padding:.42rem 1rem;background:#7c3aed;color:#fff;border-radius:7px;font-size:.78rem;font-weight:600;text-decoration:none;transition:background .2s;}
-    .btn-view:hover{background:#5b21b6}
-
-    /* EXPERIENCE */
-    .exp-card{background:#faf9ff;border:1px solid #ede9fe;border-radius:12px;margin-bottom:1.4rem;overflow:hidden;}
-    .exp-main{padding:1.4rem}
-    .exp-header{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.3rem}
-    .exp-role{font-weight:700;font-size:.95rem;color:#1e1b2e}
-    .exp-period{font-size:.75rem;color:#7c3aed;font-weight:600}
-    .exp-org{font-size:.82rem;color:#666;margin-bottom:.7rem}
-    .exp-bullets{padding-left:1.1rem;margin-bottom:.5rem}
-    .exp-bullets li{font-size:.83rem;color:#333;margin-bottom:.3rem;line-height:1.65}
-
-    /* SHARED MEDIA STRIP */
-    .media-strip{border-top:1px solid #e8e8e8;padding:1rem 1.4rem;background:#fff;}
-    .media-strip-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#aaa;margin-bottom:.7rem;}
-    .media-row{display:flex;gap:.7rem;flex-wrap:wrap;}
-    .media-thumb{width:110px;height:78px;border-radius:8px;object-fit:cover;border:1px solid #e5e7eb;cursor:pointer;transition:opacity .2s;}
-    .media-thumb:hover{opacity:.82}
-    .media-placeholder{width:110px;height:78px;border-radius:8px;border:1.5px dashed #c4b5fd;background:#faf9ff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;cursor:default;}
-    .media-placeholder .mp-icon{font-size:1.2rem;}
-    .media-placeholder .mp-label{font-size:.58rem;color:#a78bfa;font-weight:600;text-align:center;line-height:1.3;padding:0 .3rem;}
-
-    /* AWARDS */
-    .awards-list{display:flex;flex-direction:column;gap:1rem;}
-    .award-card{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;}
-    .award-main{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;}
-    .award-icon{font-size:1rem;margin-top:3px;min-width:1.8rem;color:#7c3aed;font-weight:700;}
-    .award-title{font-weight:700;font-size:.88rem;color:#1e1b2e;margin-bottom:.1rem}
-    .award-sub{font-size:.75rem;color:#888}
-
-    /* CERTIFICATIONS */
-    .cert-list{display:flex;flex-direction:column;gap:1rem;}
-    .cert-card{border:1px solid #ede9fe;border-radius:12px;overflow:hidden;background:#faf9ff;}
-    .cert-main{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;}
-    .cert-icon{width:40px;height:40px;min-width:40px;border-radius:10px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#7c3aed;font-weight:700;}
-    .cert-name{font-size:.82rem;font-weight:600;color:#1e1b2e;line-height:1.4}
-    .cert-issuer{font-size:.72rem;color:#888;margin-top:.1rem}
-
-    /* LEADERSHIP GALLERY */
-    .lead-card{background:#faf9ff;border:1px solid #ede9fe;border-radius:12px;margin-bottom:1.4rem;overflow:hidden;}
-    .lead-main{padding:1.4rem}
-    .lead-header{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.2rem}
-    .lead-role{font-weight:700;font-size:.92rem;color:#1e1b2e}
-    .lead-period{font-size:.73rem;color:#7c3aed;font-weight:600}
-    .lead-org{font-size:.8rem;color:#888;margin-bottom:.6rem}
-    .lead-bullets{padding-left:1.1rem;margin-bottom:.5rem}
-    .lead-bullets li{font-size:.82rem;color:#333;margin-bottom:.28rem;line-height:1.6}
-    .lead-gallery{border-top:1px solid #e8e8e8;padding:1rem 1.4rem;background:#fff;}
-    .lead-gallery-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#aaa;margin-bottom:.75rem;}
-    /* Responsive grid: each photo at least 160px, max 4 per row */
-    .lead-gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;}
-    .gallery-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;cursor:pointer;transition:opacity .2s;}
-    .gallery-img:hover{opacity:.82}
-    .gallery-placeholder{width:100%;aspect-ratio:4/3;border-radius:8px;border:1.5px dashed #c4b5fd;background:#faf9ff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;}
-    .gallery-placeholder .gp-icon{font-size:1.4rem;}
-    .gallery-placeholder .gp-label{font-size:.62rem;color:#a78bfa;font-weight:600;text-align:center;padding:0 .5rem;line-height:1.3;}
-
-    /* PUBLICATIONS */
-    .pub-card{background:#faf9ff;border:1px solid #ede9fe;border-radius:12px;padding:1.4rem;margin-bottom:1.1rem;}
-    .pub-header{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.3rem}
-    .pub-title{font-weight:700;font-size:.9rem;color:#1e1b2e;line-height:1.4}
-    .pub-period{font-size:.73rem;color:#7c3aed;font-weight:600}
-    .pub-org{font-size:.8rem;color:#888;margin-bottom:.6rem}
-    .pub-bullets{padding-left:1.1rem}
-    .pub-bullets li{font-size:.82rem;color:#333;margin-bottom:.28rem;line-height:1.6}
-
-    /* REFERENCE */
-    .ref-box{text-align:center;padding:2rem;background:#faf9ff;border-radius:14px;border:1px solid #ede9fe;}
-
-    /* LIGHTBOX */
-    #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.84);z-index:1000;align-items:center;justify-content:center;padding:1.5rem;}
-    #lightbox.open{display:flex;}
-    #lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
-    #lb-close{position:fixed;top:1.1rem;right:1.4rem;background:none;border:none;color:#fff;font-size:2.2rem;cursor:pointer;line-height:1;opacity:.85;}
-    #lb-close:hover{opacity:1}
-
-    footer{margin-left:230px;text-align:center;padding:1.5rem;font-size:.78rem;color:#aaa;border-top:1px solid #f0f0f0;}
-    footer a{color:#7c3aed;text-decoration:none}
-
-    @media(max-width:768px){
-      #sidebar{transform:translateX(-100%);transition:transform .3s;width:220px}
-      #sidebar.open{transform:translateX(0)}
-      #ham{display:block}
-      main,footer{margin-left:0;padding:1.5rem 1.2rem}
-      #hero{flex-direction:column;text-align:center;padding:2rem 0 2.5rem}
-      .hero-btns{justify-content:center}
-      main{padding-top:4.5rem}
-      .lead-gallery-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
-    }
+  <head> <meta charset="UTF-8"/> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title> Muhammad Daniel | Portfolio </title> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+  *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth} body{font-family:'Poppins',sans-serif;background:#fff;color:#222;line-height:1.65} /* SIDEBAR */ #sidebar{position:fixed;top:0;left:0;width:230px;height:100vh;background:#fff;border-right:1px solid #e8e8e8;display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;z-index:200;overflow-y:auto;} #sidebar .s-name{font-size:.82rem;font-weight:700;text-align:center;color:#1e1b2e;margin-bottom:.15rem;line-height:1.3} #sidebar .s-role{font-size:.7rem;color:#7c3aed;text-align:center;margin-bottom:1.4rem;font-weight:500} #sidebar nav{width:100%} #sidebar nav a{display:block;padding:.5rem .9rem;border-radius:8px;font-size:.78rem;font-weight:500;color:#555;text-decoration:none;transition:background .2s,color .2s;margin-bottom:.15rem;} #sidebar nav a:hover,#sidebar nav a.active{background:#ede9fe;color:#7c3aed;font-weight:600} #sidebar .s-links{display:flex;gap:.6rem;margin-top:1.4rem;flex-wrap:wrap;justify-content:center;} #sidebar .s-links a{font-size:.7rem;padding:.35rem .7rem;border-radius:20px;border:1px solid #7c3aed;color:#7c3aed;text-decoration:none;font-weight:600;transition:background .2s;} #sidebar .s-links a:hover{background:#ede9fe} /* HAMBURGER */ #ham{display:none;position:fixed;top:14px;left:14px;z-index:300;background:#7c3aed;border:none;border-radius:8px;padding:.45rem .6rem;cursor:pointer;} #ham span{display:block;width:20px;height:2px;background:#fff;margin:4px 0;border-radius:2px} main{margin-left:230px;padding:3rem 3rem 4rem} /* HERO */ #hero{display:flex;align-items:center;gap:2.5rem;padding:3rem 0 3.5rem;border-bottom:1px solid #f0f0f0;} .hero-photo-wrap{width:150px;height:150px;min-width:150px;border-radius:50%;border:4px solid #7c3aed;overflow:hidden;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:4rem;} .hero-photo-wrap img{width:100%;height:100%;object-fit:cover} .hero-text h1{font-size:1.8rem;font-weight:700;color:#1e1b2e;line-height:1.2;margin-bottom:.3rem} .hero-text .role{font-size:.88rem;color:#7c3aed;font-weight:600;margin-bottom:.6rem} .hero-text .tagline{font-size:.88rem;color:#555;max-width:480px;line-height:1.7;margin-bottom:1rem} .hero-btns{display:flex;gap:.7rem;flex-wrap:wrap} .btn{display:inline-flex;align-items:center;gap:.35rem;padding:.5rem 1.2rem;border-radius:8px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s;border:none;cursor:pointer;} .btn-fill{background:#7c3aed;color:#fff} .btn-fill:hover{background:#5b21b6} .btn-out{border:1.5px solid #7c3aed;color:#7c3aed;background:transparent} .btn-out:hover{background:#ede9fe} section{padding:2.8rem 0;border-bottom:1px solid #f0f0f0} section:last-child{border-bottom:none} .sec-title{font-size:1.25rem;font-weight:700;color:#1e1b2e;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:3px solid #7c3aed;display:inline-block;} /* OBJECTIVE */ .objective-text{font-size:.9rem;color:#444;line-height:1.9;border-left:4px solid #7c3aed;padding-left:1.2rem;} /* EDUCATION */ .edu-item{margin-bottom:1.6rem;display:flex;gap:1.2rem} .edu-line{display:flex;flex-direction:column;align-items:center;padding-top:.3rem} .edu-dot{width:13px;height:13px;min-width:13px;border-radius:50%;background:#7c3aed} .edu-connector{flex:1;width:2px;background:#ddd;margin-top:.3rem} .edu-period{font-size:.72rem;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem} .edu-degree{font-weight:700;font-size:.95rem;color:#1e1b2e;margin-bottom:.1rem} .edu-school{font-size:.82rem;color:#666;margin-bottom:.5rem} .badges{display:flex;flex-wrap:wrap;gap:.4rem} .badge{font-size:.7rem;font-weight:600;padding:.2rem .65rem;border-radius:20px;background:#ede9fe;color:#5b21b6} .badge-gold{background:#fef3c7;color:#92400e} /* SKILLS */ .skill-section{margin-bottom:1.8rem} .skill-section-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7c3aed;margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem;} .skill-section-title::after{content:'';flex:1;height:1px;background:#e5e7eb;} .skill-icons{display:flex;flex-wrap:wrap;gap:1rem} .skill-icon-item{display:flex;flex-direction:column;align-items:center;gap:.3rem;width:68px;text-align:center;} .skill-icon-item img{width:36px;height:36px;object-fit:contain} .skill-icon-item .si-label{font-size:.66rem;font-weight:500;color:#444;line-height:1.2} .skill-text-item{display:inline-flex;align-items:center;gap:.4rem;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:8px;padding:.3rem .8rem;font-size:.78rem;font-weight:500;color:#3730a3;} /* PROJECTS */ .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem} .proj-card{border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;background:#fff;} .proj-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(124,58,237,.1)} .proj-img{width:100%;height:160px;background:#f0ebff;display:flex;align-items:center;justify-content:center;font-size:3rem;overflow:hidden;} .proj-img img{width:100%;height:100%;object-fit:cover} .proj-body{padding:1.2rem} .proj-award{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;color:#92400e;background:#fef3c7;padding:.2rem .6rem;border-radius:20px;margin-bottom:.55rem;} .proj-ongoing{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;color:#065f46;background:#d1fae5;padding:.2rem .6rem;border-radius:20px;margin-bottom:.55rem;} .proj-title{font-weight:700;font-size:.9rem;color:#1e1b2e;margin-bottom:.4rem;line-height:1.4} .proj-desc{font-size:.8rem;color:#555;line-height:1.65;margin-bottom:.8rem} .proj-tech{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.9rem} .tech-tag{font-size:.68rem;padding:.18rem .55rem;border-radius:5px;background:#ede9fe;color:#5b21b6;font-weight:600} .proj-date{font-size:.72rem;color:#999;margin-bottom:.9rem} .btn-view{display:inline-flex;align-items:center;gap:.3rem;padding:.42rem 1rem;background:#7c3aed;color:#fff;border-radius:7px;font-size:.78rem;font-weight:600;text-decoration:none;transition:background .2s;} .btn-view:hover{background:#5b21b6} /* EXPERIENCE */ .exp-card{background:#faf9ff;border:1px solid #ede9fe;border-radius:12px;margin-bottom:1.4rem;overflow:hidden;} .exp-main{padding:1.4rem} .exp-header{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.3rem} .exp-role{font-weight:700;font-size:.95rem;color:#1e1b2e} .exp-period{font-size:.75rem;color:#7c3aed;font-weight:600} .exp-org{font-size:.82rem;color:#666;margin-bottom:.7rem} .exp-bullets{padding-left:1.1rem;margin-bottom:.5rem} .exp-bullets li{font-size:.83rem;color:#333;margin-bottom:.3rem;line-height:1.65} /* SHARED MEDIA STRIP */ .media-strip{border-top:1px solid #e8e8e8;padding:1rem 1.4rem;background:#fff;} .media-strip-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#aaa;margin-bottom:.7rem;} .media-row{display:flex;gap:.7rem;flex-wrap:wrap;} .media-thumb{width:110px;height:78px;border-radius:8px;object-fit:cover;border:1px solid #e5e7eb;cursor:pointer;transition:opacity .2s;} .media-thumb:hover{opacity:.82} .media-placeholder{width:110px;height:78px;border-radius:8px;border:1.5px dashed #c4b5fd;background:#faf9ff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;cursor:default;} .media-placeholder .mp-icon{font-size:1.2rem;} .media-placeholder .mp-label{font-size:.58rem;color:#a78bfa;font-weight:600;text-align:center;line-height:1.3;padding:0 .3rem;} /* AWARDS */ .awards-list{display:flex;flex-direction:column;gap:1rem;} .award-card{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;} .award-main{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;} .award-icon{font-size:1rem;margin-top:3px;min-width:1.8rem;color:#7c3aed;font-weight:700;} .award-title{font-weight:700;font-size:.88rem;color:#1e1b2e;margin-bottom:.1rem} .award-sub{font-size:.75rem;color:#888} /* CERTIFICATIONS */ .cert-list{display:flex;flex-direction:column;gap:1rem;} .cert-card{border:1px solid #ede9fe;border-radius:12px;overflow:hidden;background:#faf9ff;} .cert-main{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;} .cert-icon{width:40px;height:40px;min-width:40px;border-radius:10px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#7c3aed;font-weight:700;} .cert-name{font-size:.82rem;font-weight:600;color:#1e1b2e;line-height:1.4} .cert-issuer{font-size:.72rem;color:#888;margin-top:.1rem} /* LEADERSHIP GALLERY */ .lead-card{background:#faf9ff;border:1px solid #ede9fe;border-radius:12px;margin-bottom:1.4rem;overflow:hidden;} .lead-main{padding:1.4rem} .lead-header{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.2rem} .lead-role{font-weight:700;font-size:.92rem;color:#1e1b2e} .lead-period{font-size:.73rem;color:#7c3aed;font-weight:600} .lead-org{font-size:.8rem;color:#888;margin-bottom:.6rem} .lead-bullets{padding-left:1.1rem;margin-bottom:.5rem} .lead-bullets li{font-size:.82rem;color:#333;margin-bottom:.28rem;line-height:1.6} .lead-gallery{border-top:1px solid #e8e8e8;padding:1rem 1.4rem;background:#fff;} .lead-gallery-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#aaa;margin-bottom:.75rem;} /* Responsive grid: each photo at least 160px, max 4 per row */ .lead-gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;} .gallery-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;cursor:pointer;transition:opacity .2s;} .gallery-img:hover{opacity:.82} .gallery-placeholder{width:100%;aspect-ratio:4/3;border-radius:8px;border:1.5px dashed #c4b5fd;background:#faf9ff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;} .gallery-placeholder .gp-icon{font-size:1.4rem;} .gallery-placeholder .gp-label{font-size:.62rem;color:#a78bfa;font-weight:600;text-align:center;padding:0 .5rem;line-height:1.3;} /* PUBLICATIONS */ .pub-card{background:#faf9ff;border:1px solid #ede9fe;border-radius:12px;padding:1.4rem;margin-bottom:1.1rem;} .pub-header{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.3rem} .pub-title{font-weight:700;font-size:.9rem;color:#1e1b2e;line-height:1.4} .pub-period{font-size:.73rem;color:#7c3aed;font-weight:600} .pub-org{font-size:.8rem;color:#888;margin-bottom:.6rem} .pub-bullets{padding-left:1.1rem} .pub-bullets li{font-size:.82rem;color:#333;margin-bottom:.28rem;line-height:1.6} /* REFERENCE */ .ref-box{text-align:center;padding:2rem;background:#faf9ff;border-radius:14px;border:1px solid #ede9fe;} /* LIGHTBOX */ #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.84);z-index:1000;align-items:center;justify-content:center;padding:1.5rem;} #lightbox.open{display:flex;} #lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);} #lb-close{position:fixed;top:1.1rem;right:1.4rem;background:none;border:none;color:#fff;font-size:2.2rem;cursor:pointer;line-height:1;opacity:.85;} #lb-close:hover{opacity:1} footer{margin-left:230px;text-align:center;padding:1.5rem;font-size:.78rem;color:#aaa;border-top:1px solid #f0f0f0;} footer a{color:#7c3aed;text-decoration:none} @media(max-width:768px){ #sidebar{transform:translateX(-100%);transition:transform .3s;width:220px} #sidebar.open{transform:translateX(0)} #ham{display:block} main,footer{margin-left:0;padding:1.5rem 1.2rem} #hero{flex-direction:column;text-align:center;padding:2rem 0 2.5rem} .hero-btns{justify-content:center} main{padding-top:4.5rem} .lead-gallery-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));} }
   </style>
-  </head>
-  <body>
-    <!-- LIGHTBOX -->
-    <div id="lightbox">
-      <button id="lb-close" onclick="closeLb()">
-      &#215;
-      </button>
-      <img id="lb-img" src="" alt=""/>
+</head>
+<body>
+  <!-- LIGHTBOX -->
+  <div id="lightbox"> <button id="lb-close" onclick="closeLb()"> &#215; </button> <img id="lb-img" src="" alt=""/>
+</div>
+<!-- HAMBURGER -->
+<button id="ham" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu"> <span> </span> <span> </span> <span> </span> </button>
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="s-name"> Muhammad Daniel <br> Bin Mohd Sahid
+  </div>
+  <div class="s-role"> CS Undergraduate · Big Data
+  </div>
+  <nav> 
+    <a href="#hero" class="active"> Home </a> 
+    <a href="#objective"> Objective </a> 
+    <a href="#education"> Education </a> 
+    <a href="#skills"> Skills </a> 
+    <a href="#projects"> Projects </a> 
+    <a href="#experience"> Experience </a> 
+    <a href="#awards"> Awards </a> 
+    <a href="#certifications"> Certifications </a> 
+    <a href="#leadership"> Leadership </a> 
+    <a href="#publications"> Publications </a> 
+    <a href="#reference"> Reference </a>
+  
+  </nav>
+  <div class="s-links">
+    <a href="mailto:Danielsahid05@gmail.com"> Email </a> 
+    <a href="https://linkedin.com/in/danielsahid" target="_blank"> LinkedIn </a> 
+    <a href="resume.pdf" target="_blank"> Resume </a>
+  
+  </div>
+</aside>
+<main>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-photo-wrap">
+      <img src="images/profile.jpg" alt="Muhammad Daniel Bin Mohd Sahid">
     </div>
-    <!-- HAMBURGER -->
-    <button id="ham" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">
-    <span>
-    </span>
-    <span>
-    </span>
-    <span>
-    </span>
-    </button>
-    <!-- SIDEBAR -->
-    <aside id="sidebar">
-      <div class="s-name">
-        Muhammad Daniel
-        <br>
-        Bin Mohd Sahid
+    <div class="hero-text">
+      <div class="role"> Undergraduate CS Student · Big Data Track
       </div>
-      <div class="s-role">
-        CS Undergraduate · Big Data
+      <h1> Muhammad Daniel <br> Bin Mohd Sahid
+      </h1>
+      <p class="tagline"> Computer Science undergraduate at UiTM with CGPA 3.86 and Dean's List recognition. Passionate about Big Data, data analysis, and software development. Seeking industrial training September – December 2026.
+      </p>
+      <div class="hero-btns">
+      <a href="mailto:Danielsahid05@gmail.com" class="btn btn-fill"> Email Me </a> 
+      <a href="https://linkedin.com/in/danielsahid" target="_blank" class="btn btn-out"> LinkedIn </a> 
+      <a href="resume.pdf" target="_blank" class="btn btn-out"> Resume </a>
+      
+    </div>
+    </div>
+  </section>
+  <!-- OBJECTIVE -->
+  <section id="objective">
+    <div class="sec-title"> Career Objective
+    </div>
+    <p class="objective-text"> Computer Science undergraduate with a growing interest in Big Data, data analysis, and software development. Familiar with Python, Java, and data tools such as Power BI and MySQL, with hands-on experience through academic projects and internship. Eager to learn and contribute across all areas of Computer Science in an entry-level or internship role where I can apply my skills, grow alongside experienced teams, and deliver real value.
+    </p>
+  </section>
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-title"> Education
+    </div>
+    <div class="edu-item">
+      <div class="edu-line">
+        <div class="edu-dot">
+        </div>
+        <div class="edu-connector">
+        </div>
       </div>
-      <nav>
-        <a href="#hero" class="active">
-        Home
-        </a>
-        <a href="#objective">
-        Objective
-        </a>
-        <a href="#education">
-        Education
-        </a>
-        <a href="#skills">
-        Skills
-        </a>
-        <a href="#projects">
-        Projects
-        </a>
-        <a href="#experience">
-        Experience
-        </a>
-        <a href="#awards">
-        Awards
-        </a>
-        <a href="#certifications">
-        Certifications
-        </a>
-        <a href="#leadership">
-        Leadership
-        </a>
-        <a href="#publications">
-        Publications
-        </a>
-        <a href="#reference">
-        Reference
-        </a>
-      </nav>
-      <div class="s-links">
-        <a href="mailto:Danielsahid05@gmail.com">
-        Email
-        </a>
-        <a href="https://linkedin.com/in/danielsahid" target="_blank">
-        LinkedIn
-        </a>
-        <a href="resume.pdf" target="_blank">
-        Resume
-        </a>
+      <div class="edu-content">
+        <div class="edu-period"> Oct 2024 – Feb 2027
+        </div>
+        <div class="edu-degree"> Bachelor in Computer Science (Honours) – Big Data Track
+        </div>
+        <div class="edu-school"> Universiti Teknologi MARA (UiTM), Jasin, Melaka
+        </div>
+        <div class="badges"> <span class="badge"> CGPA 3.86 </span> <span class="badge badge-gold"> &#127942; Dean's List Sem 3, 4 &amp; 5 </span>
+        </div>
       </div>
-    </aside>
-    <main>
-      <!-- HERO -->
-      <section id="hero">
-        <div class="hero-photo-wrap">
-          <!-- Replace emoji with: <img src="images/profile.jpg" alt="Daniel"> -->
-          &#128100;
+    </div>
+    <div class="edu-item">
+      <div class="edu-line">
+        <div class="edu-dot">
         </div>
-        <div class="hero-text">
-          <div class="role">
-            Undergraduate CS Student · Big Data Track
-          </div>
-          <h1>
-            Muhammad Daniel
-            <br>
-            Bin Mohd Sahid
-          </h1>
-          <p class="tagline">
-            Computer Science undergraduate at UiTM with CGPA 3.86 and Dean's List recognition. Passionate about Big Data, data analysis, and software development. Seeking industrial training September – December 2026.
-          </p>
-          <div class="hero-btns">
-            <a href="mailto:Danielsahid05@gmail.com" class="btn btn-fill">
-            Email Me
-            </a>
-            <a href="https://linkedin.com/in/danielsahid" target="_blank" class="btn btn-out">
-            LinkedIn
-            </a>
-            <a href="resume.pdf" target="_blank" class="btn btn-out">
-            Resume
-            </a>
-          </div>
-        </div>
-      </section>
-      <!-- OBJECTIVE -->
-      <section id="objective">
-        <div class="sec-title">
-          Career Objective
-        </div>
-        <p class="objective-text">
-          Computer Science undergraduate with a growing interest in Big Data, data analysis, and software development. Familiar with Python, Java, and data tools such as Power BI and MySQL, with hands-on experience through academic projects and internship. Eager to learn and contribute across all areas of Computer Science in an entry-level or internship role where I can apply my skills, grow alongside experienced teams, and deliver real value.
-        </p>
-      </section>
-      <!-- EDUCATION -->
-      <section id="education">
-        <div class="sec-title">
-          Education
-        </div>
-        <div class="edu-item">
-          <div class="edu-line">
-            <div class="edu-dot">
-            </div>
-            <div class="edu-connector">
-            </div>
-          </div>
-          <div class="edu-content">
-            <div class="edu-period">
-              Oct 2024 – Feb 2027
-            </div>
-            <div class="edu-degree">
-              Bachelor in Computer Science (Honours) – Big Data Track
-            </div>
-            <div class="edu-school">
-              Universiti Teknologi MARA (UiTM), Jasin, Melaka
-            </div>
-            <div class="badges">
-              <span class="badge">
-              CGPA 3.86
-              </span>
-              <span class="badge badge-gold">
-              &#127942; Dean's List Sem 3, 4 &amp; 5
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-line">
-            <div class="edu-dot">
-            </div>
-          </div>
-          <div class="edu-content">
-            <div class="edu-period">
-              Aug 2021 – Feb 2024
-            </div>
-            <div class="edu-degree">
-              Diploma in Computer Science
-            </div>
-            <div class="edu-school">
-              Universiti Teknologi MARA (UiTM), Merbok, Kedah
-            </div>
-            <div class="badges">
-              <span class="badge">
-              CGPA 3.94
-              </span>
-              <span class="badge badge-gold">
-              &#127942; Dean's List All 5 Semesters
-              </span>
-              <span class="badge badge-gold">
-              &#127945; Anugerah Naib Canselor
-              </span>
-              <span class="badge">
-              MUET Band 4.0
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- SKILLS -->
-      <section id="skills">
-        <div class="sec-title">
-          Skills
-        </div>
-        <div class="skill-section">
-          <div class="skill-section-title">
-            Programming Languages
-          </div>
-          <div class="skill-icons">
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>
-              <span class="si-label">
-              Python
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"/>
-              <span class="si-label">
-              Java
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"/>
-              <span class="si-label">
-              C++
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"/>
-              <span class="si-label">
-              HTML
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"/>
-              <span class="si-label">
-              CSS
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"/>
-              <span class="si-label">
-              JavaScript
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"/>
-              <span class="si-label">
-              PHP
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="skill-section">
-          <div class="skill-section-title">
-            Data &amp; AI Tools
-          </div>
-          <div class="skill-icons">
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter"/>
-              <span class="si-label">
-              Jupyter
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Colaboratory_SVG_Logo.svg" alt="Colab"/>
-              <span class="si-label">
-              Google Colab
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://1000logos.net/wp-content/uploads/2022/12/Power-BI-Logo-2013.png" alt="Power BI"/>
-              <span class="si-label">
-              Power BI
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://img.icons8.com/color/1200/tableau-software.jpg" alt="Tableau"/>
-              <span class="si-label">
-              Tableau
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Microsoft_Office_Excel_%282019%E2%80%932025%29.svg/1280px-Microsoft_Office_Excel_%282019%E2%80%932025%29.svg.png" alt="Excel"/>
-              <span class="si-label">
-              Excel
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://image.pngaaa.com/798/5084798-middle.png" alt="Streamlit"/>
-              <span class="si-label">
-              Streamlit
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Weka_%28software%29_logo.svg/1200px-Weka_%28software%29_logo.svg.png" alt="Weka"/>
-              <span class="si-label">
-              Weka
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="skill-section">
-          <div class="skill-section-title">
-            Databases &amp; Backend
-          </div>
-          <div class="skill-icons">
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"/>
-              <span class="si-label">
-              MySQL
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"/>
-              <span class="si-label">
-              MongoDB
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle"/>
-              <span class="si-label">
-              Oracle Apex
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tomcat/tomcat-original.svg" alt="JSP"/>
-              <span class="si-label">
-              JSP/Servlets
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="skill-section">
-          <div class="skill-section-title">
-            Dev Tools &amp; Platforms
-          </div>
-          <div class="skill-icons">
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"/>
-              <span class="si-label">
-              VS Code
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"/>
-              <span class="si-label">
-              GitHub
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://images.seeklogo.com/logo-png/65/1/canva-logo-png_seeklogo-653227.png" alt="Canva"/>
-              <span class="si-label">
-              Canva
-              </span>
-            </div>
-            <div class="skill-icon-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress"/>
-              <span class="si-label">
-              WordPress
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="skill-section">
-          <div class="skill-section-title">
-            Data &amp; AI Competencies
-          </div>
-          <div class="skill-icons">
-            <span class="skill-text-item">
-            Data Mining
-            </span>
-            <span class="skill-text-item">
-            Big Data Processing
-            </span>
-            <span class="skill-text-item">
-            Machine Learning
-            </span>
-            <span class="skill-text-item">
-            Predictive Analytics
-            </span>
-            <span class="skill-text-item">
-            Sentiment Analysis
-            </span>
-            <span class="skill-text-item">
-            NLP Basics
-            </span>
-            <span class="skill-text-item">
-            Database Management
-            </span>
-            <span class="skill-text-item">
-            Data Visualisation
-            </span>
-            <span class="skill-text-item">
-            Hybrid Filtering / Recommendation Systems
-            </span>
-          </div>
-        </div>
-        <div class="skill-section">
-          <div class="skill-section-title">
-            Soft Skills &amp; Languages
-          </div>
-          <div class="skill-icons">
-            <span class="skill-text-item">
-            Public Speaking &amp; Emcee
-            </span>
-            <span class="skill-text-item">
-            Problem-Solving
-            </span>
-            <span class="skill-text-item">
-            Team Collaboration
-            </span>
-            <span class="skill-text-item">
-            Event Management
-            </span>
-            <span class="skill-text-item">
-            Bahasa Malaysia (Native)
-            </span>
-            <span class="skill-text-item">
-            English (MUET 4.0)
-            </span>
-            <span class="skill-text-item">
-            Indonesian (Conversational)
-            </span>
-          </div>
-        </div>
-      </section>
-      <!-- PROJECTS -->
-      <section id="projects">
-        <div class="sec-title">
-          Academic Projects
-        </div>
-        <div class="projects-grid">
-          <div class="proj-card">
-            <div class="proj-img">
-              &#128202;
-            </div>
-            <div class="proj-body">
-              <div class="proj-award">
-                1st Place – Konvensyen Dataraya Melaka 2025
-              </div>
-              <div class="proj-title">
-                Securing Nation: Building Safe Communities Through Data
-              </div>
-              <div class="proj-desc">
-                Data storytelling project exploring population vs crime rate using DOSM datasets. Insights contributed toward Melaka Blueprint 2025.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                Python
-                </span>
-                <span class="tech-tag">
-                Excel
-                </span>
-                <span class="tech-tag">
-                Data Visualisation
-                </span>
-                <span class="tech-tag">
-                DOSM Dataset
-                </span>
-              </div>
-              <div class="proj-date">
-                Oct 2025
-              </div>
-              <a href="#" class="btn-view">
-              View Project
-              </a>
-            </div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-img">
-              &#127973;
-            </div>
-            <div class="proj-body">
-              <div class="proj-award">
-                Best Project – ISP565 Data Mining Exhibition
-              </div>
-              <div class="proj-title">
-                Diabetes Level Classification Using J48 Decision Tree
-              </div>
-              <div class="proj-desc">
-                Classified diabetes status using J48 Decision Tree on medical datasets. Awarded Best Project Overall at the exhibition.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                Machine Learning
-                </span>
-                <span class="tech-tag">
-                J48 Decision Tree
-                </span>
-                <span class="tech-tag">
-                Weka
-                </span>
-                <span class="tech-tag">
-                Data Mining
-                </span>
-              </div>
-              <div class="proj-date">
-                May – Jul 2025
-              </div>
-              <a href="#" class="btn-view">
-              View Project
-              </a>
-            </div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-img">
-              &#127869;&#65039;
-            </div>
-            <div class="proj-body">
-              <div class="proj-ongoing">
-                Final Year Project · Ongoing
-              </div>
-              <div class="proj-title">
-                RasaWarisan: Malaysian Emotion-Based Recipe Recommendation System
-              </div>
-              <div class="proj-desc">
-                AI-driven cuisine recommendation using hybrid filtering. Accepts mood, dietary needs, and preferences to suggest personalised Malaysian heritage recipes.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                Python
-                </span>
-                <span class="tech-tag">
-                Hybrid Filtering
-                </span>
-                <span class="tech-tag">
-                AI/ML
-                </span>
-                <span class="tech-tag">
-                Recommendation System
-                </span>
-              </div>
-              <div class="proj-date">
-                Sep 2025 – Present
-              </div>
-              <a href="#" class="btn-view">
-              View Project
-              </a>
-            </div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-img">
-              &#128218;
-            </div>
-            <div class="proj-body">
-              <div class="proj-award">
-                Course Assignment
-              </div>
-              <div class="proj-title">
-                Analyzing Student Study Habits Efficiency using Supervised ML
-              </div>
-              <div class="proj-desc">
-                Collected 500 survey responses; used Python and Streamlit for analysis and interactive dashboard.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                Python
-                </span>
-                <span class="tech-tag">
-                Machine Learning
-                </span>
-                <span class="tech-tag">
-                Streamlit
-                </span>
-              </div>
-              <div class="proj-date">
-                Oct 2025 – Mar 2026
-              </div>
-              <a href="#" class="btn-view">
-              View Report
-              </a>
-            </div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-img">
-              &#128248;
-            </div>
-            <div class="proj-body">
-              <div class="proj-award">
-                Course Assignment
-              </div>
-              <div class="proj-title">
-                ReWear Fashion System
-              </div>
-              <div class="proj-desc">
-                Sustainable fashion ordering system promoting second-hand clothing using JSP, Servlets, and MySQL.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                Java
-                </span>
-                <span class="tech-tag">
-                JSP
-                </span>
-                <span class="tech-tag">
-                Servlets
-                </span>
-                <span class="tech-tag">
-                MySQL
-                </span>
-              </div>
-              <div class="proj-date">
-                Oct 2025 – Mar 2026
-              </div>
-              <a href="#" class="btn-view">
-              View Report
-              </a>
-            </div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-img">
-              &#128172;
-            </div>
-            <div class="proj-body">
-              <div class="proj-award">
-                Course Assignment
-              </div>
-              <div class="proj-title">
-                Sentiment Analysis: ChatGPT vs Gemini (Google Play Store)
-              </div>
-              <div class="proj-desc">
-                Sentiment analysis comparing user reviews using Naive Bayes and SVM. Preprocessing done in RapidMiner.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                Python
-                </span>
-                <span class="tech-tag">
-                Naive Bayes
-                </span>
-                <span class="tech-tag">
-                SVM
-                </span>
-                <span class="tech-tag">
-                RapidMiner
-                </span>
-              </div>
-              <div class="proj-date">
-                Oct 2025 – Mar 2026
-              </div>
-              <a href="#" class="btn-view">
-              View Report
-              </a>
-            </div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-img">
-              &#129309;
-            </div>
-            <div class="proj-body">
-              <div class="proj-award">
-                Course Assignment
-              </div>
-              <div class="proj-title">
-                V-Buddy Mentorship System
-              </div>
-              <div class="proj-desc">
-                Web-based mentorship system connecting students with mentors using HTML, CSS, JavaScript, and MySQL.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                HTML
-                </span>
-                <span class="tech-tag">
-                CSS
-                </span>
-                <span class="tech-tag">
-                JavaScript
-                </span>
-                <span class="tech-tag">
-                MySQL
-                </span>
-              </div>
-              <div class="proj-date">
-                Mar 2023 – Oct 2023
-              </div>
-              <a href="#" class="btn-view">
-              View Report
-              </a>
-            </div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-img">
-              &#127973;
-            </div>
-            <div class="proj-body">
-              <div class="proj-award">
-                Course Assignment
-              </div>
-              <div class="proj-title">
-                Government Clinic Cheng Appointment Booking System
-              </div>
-              <div class="proj-desc">
-                Appointment booking system for a government clinic using Oracle Apex and Oracle Database.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                Oracle Apex
-                </span>
-                <span class="tech-tag">
-                Oracle Database
-                </span>
-              </div>
-              <div class="proj-date">
-                Aug 2024 – Jan 2025
-              </div>
-              <a href="#" class="btn-view">
-              View Report
-              </a>
-            </div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-img">
-              &#129504;
-            </div>
-            <div class="proj-body">
-              <div class="proj-award">
-                Research Project
-              </div>
-              <div class="proj-title">
-                EEG-Based Machine Learning for Detecting Major Depressive Disorder
-              </div>
-              <div class="proj-desc">
-                Explored ML techniques on EEG data to detect major depressive disorder and understand neurological markers.
-              </div>
-              <div class="proj-tech">
-                <span class="tech-tag">
-                EEG Analysis
-                </span>
-                <span class="tech-tag">
-                Machine Learning
-                </span>
-                <span class="tech-tag">
-                Scopus
-                </span>
-              </div>
-              <div class="proj-date">
-                Sep 2025 – Jan 2026
-              </div>
-              <a href="#" class="btn-view">
-              View Report
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- EXPERIENCE -->
-      <section id="experience">
-        <div class="sec-title">
-          Internship &amp; Work Experience
-        </div>
-        <div class="exp-card">
-          <div class="exp-main">
-            <div class="exp-header">
-              <div>
-                <div class="exp-role">
-                  Multimedia Designer &amp; IT Support
-                </div>
-                <div class="exp-org">
-                  Yayasan Amal Kedah (YAM) · Sungai Petani, Kedah ·
-                  <em>
-                  Internship
-                  </em>
-                </div>
-              </div>
-              <div class="exp-period">
-                Sep 2023 – Feb 2024
-              </div>
-            </div>
-            <ul class="exp-bullets">
-              <li>
-                Designed 10+ digital campaign materials using Canva &amp; CapCut, boosting social media reach across Facebook &amp; TikTok.
-              </li>
-              <li>
-                Managed content calendar for 2 platforms, improving posting consistency and audience engagement over 6 months.
-              </li>
-              <li>
-                Maintained and updated organisation website via WordPress &amp; Google Sites, reducing content update turnaround by 50%.
-              </li>
-              <li>
-                Resolved 8+ IT support tickets involving software issues, maintaining 100% operational uptime for office systems.
-              </li>
-            </ul>
-          </div>
-          <div class="media-strip">
-            <div class="media-strip-label">
-              Photos
-            </div>
-            <div class="media-row">
-              <!-- HOW TO ADD: replace div below with <img src="images/yam-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Yayasan Amal Kedah – Internship"> -->
-              <img src="images/yam-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Yayasan Amal Kedah – Internship">
-              <img src="images/yam-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Yayasan Amal Kedah – Multimedia Design Work">
-              <img src="images/yam-3.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Yayasan Amal Kedah – IT Support">
-            </div>
-          </div>
-        </div>
-        <div class="exp-card">
-          <div class="exp-main">
-            <div class="exp-header">
-              <div>
-                <div class="exp-role">
-                  Crew Member
-                </div>
-                <div class="exp-org">
-                  Hayyan Garden Cafe · Sungai Petani, Kedah
-                </div>
-              </div>
-              <div class="exp-period">
-                Apr 2021 – Jun 2021
-              </div>
-            </div>
-            <ul class="exp-bullets">
-              <li>
-                Served 50+ customers daily with efficient front-of-house service, maintaining high satisfaction standards.
-              </li>
-              <li>
-                Collaborated with a team of 5 to maintain dining area standards and consistent daily operations.
-              </li>
-            </ul>
-          </div>
-          <div class="media-strip">
-            <div class="media-strip-label">
-              Photos
-            </div>
-            <div class="media-row">
-              <img src="images/cafe-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Hayyan Garden Cafe – Work">
-              <img src="images/cafe-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Hayyan Garden Cafe – Team">
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- AWARDS -->
-      <section id="awards">
-        <div class="sec-title">
-          Awards &amp; Achievements
-        </div>
-        <div class="awards-list">
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ★
-              </div>
-              <div>
-                <div class="award-title">
-                  1st Place – Data Storytelling, Konvensyen Dataraya Melaka
-                </div>
-                <div class="award-sub">
-                  2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <!-- <img src="images/award-dataraya-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="1st Place Certificate – Konvensyen Dataraya Melaka 2025"> -->
-                <img src="images/award-dataraya-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="1st Place Certificate – Konvensyen Dataraya Melaka 2025">
-                <img src="images/award-dataraya-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Konvensyen Dataraya Melaka 2025 – Team Photo">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ★
-              </div>
-              <div>
-                <div class="award-title">
-                  1st Place – Best Project, ISP565 Data Mining Exhibition
-                </div>
-                <div class="award-sub">
-                  UiTM Jasin · 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <img src="images/datamining-cert.jpg" class="media-thumb" onclick="openLb(this.src)" alt="ISP565 Data Mining Exhibition – Certificate">
-                <img src="images/award-datamining.jpg" class="media-thumb" onclick="openLb(this.src)" alt="1st Place – ISP565 Data Mining Exhibition">
-                <img src="images/award-datamining-team.jpg" class="media-thumb" onclick="openLb(this.src)" alt="ISP565 Data Mining Exhibition – Team Photo">
-                <img src="images/award-datamining-booth.jpg" class="media-thumb" onclick="openLb(this.src)" alt="ISP565 Data Mining Exhibition – Project Booth">
-                <img src="images/award-datamining-team.jpg" class="media-thumb" onclick="openLb(this.src)" alt="ISP565 Data Mining Exhibition – Team Photo">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ◈
-              </div>
-              <div>
-                <div class="award-title">
-                  Anugerah Naib Canselor (Vice-Chancellor's Award)
-                </div>
-                <div class="award-sub">
-                  Diploma in Computer Science, UiTM · 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <img src="images/anc-award-convo.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Anugerah Naib Canselor – Convocation Ceremony">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ◈
-              </div>
-              <div>
-                <div class="award-title">
-                  Dean's List – Sem 3, 4 &amp; 5 (Bachelor) · CGPA 3.86
-                </div>
-                <div class="award-sub">
-                  2025–26
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <img src="images/deanslist-deg-personal.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Bachelor's Degree Dean's List Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ★
-              </div>
-              <div>
-                <div class="award-title">
-                  Gold Award – Youth Innovation Presentation
-                </div>
-                <div class="award-sub">
-                  ISP250 &amp; CSC264, UiTM Kedah · 2023
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <img src="images/youth1st-cert.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Youth Innovation Presentation – 1st Place Certificate">
-                <img src="images/gold-innovation.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Gold Award – Youth Innovation Presentation">
-                <img src="images/gold-innovation-team.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Youth Innovation Presentation – Team Photo">
-                <img src="images/gold-innovation-present.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Youth Innovation Presentation – Presenting">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ★
-              </div>
-              <div>
-                <div class="award-title">
-                  Best Project Database – Youth Innovation Presentation
-                </div>
-                <div class="award-sub">
-                  UiTM Kedah · 2023
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <img src="images/best-db.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Best Project Database – Youth Innovation Presentation">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ◈
-              </div>
-              <div>
-                <div class="award-title">
-                  Dean's List – All 5 Semesters (Diploma) · CGPA 3.94–3.96
-                </div>
-                <div class="award-sub">
-                  2022–24
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <img src="images/Dipdean-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Diploma Dean's List – Semester 1">
-                <img src="images/Dipdean-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Diploma Dean's List – Semester 2">
-                <img src="images/Dipdean-3.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Diploma Dean's List – Semester 3">
-                <img src="images/Dipdean-4.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Diploma Dean's List – Semester 4" alt="Diploma Dean's List – Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ◈
-              </div>
-              <div>
-                <div class="award-title">
-                  SPM Best Achievement Award
-                </div>
-                <div class="award-sub">
-                  2020
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <img src="images/spm-award.jpg" class="media-thumb" onclick="openLb(this.src)" alt="SPM Best Achievement Award 2020">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ◈
-              </div>
-              <div>
-                <div class="award-title">
-                  2nd Place – CAKNA National Cybersecurity Challenge
-                </div>
-                <div class="award-sub">
-                  Kedah State Level · 2020
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Evidence
-              </div>
-              <div class="media-row">
-                <img src="images/cakna-cert.jpg" class="media-thumb" onclick="openLb(this.src)" alt="CAKNA National Cybersecurity Challenge – Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="award-card">
-            <div class="award-main">
-              <div class="award-icon">
-                ◈
-              </div>
-              <div>
-                <div class="award-title">
-                  Student Exchange Programme – Japan, Series 58
-                </div>
-                <div class="award-sub">
-                  Selected Participant · 2019
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Photos
-              </div>
-              <div class="media-row">
-                <img src="images/japan-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Student Exchange Programme – Japan, Series 58">
-                <img src="images/japan-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Japan Exchange Programme – Group Photo">
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- CERTIFICATIONS -->
-      <section id="certifications">
-        <div class="sec-title">
-          Certifications
-        </div>
-        <div class="cert-list">
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Google PM: Foundations of Project Management
-                </div>
-                <div class="cert-issuer">
-                  Google · Coursera · Apr 2026
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <!-- <img src="images/cert-gpm1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Google Project Management Certificate – Foundations"> -->
-                <img src="images/cert-gpm1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Google Project Management Certificate – Foundations">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Google PM: Project Initiation – Starting a Successful Project
-                </div>
-                <div class="cert-issuer">
-                  Google · Coursera · Apr 2026
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/cert-gpm2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Google Project Management Certificate – Project Initiation">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Google PM: Project Planning – Putting It All Together
-                </div>
-                <div class="cert-issuer">
-                  Google · Coursera · Apr 2026
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/cert-gpm3.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Google Project Management Certificate – Project Planning">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  2025 Aspire Leader Program
-                </div>
-                <div class="cert-issuer">
-                  Aspire Institute · Dec 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/aspire-cert.jpg" class="media-thumb" onclick="openLb(this.src)" alt="2025 Aspire Leader Program Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Microsoft Excel Workshop
-                </div>
-                <div class="cert-issuer">
-                  HRD Corp · Aug 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/cert-excel.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Microsoft Excel Workshop Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Social Engineering &amp; Phishing Workshop
-                </div>
-                <div class="cert-issuer">
-                  0day Academy · Apr 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/0dayCertSE.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Social Engineering and Phishing Workshop Certificate">
-                <img src="images/badge.png" class="media-thumb" onclick="openLb(this.src)" alt="0day Academy Workshop Badge">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Social Media Marketing
-                </div>
-                <div class="cert-issuer">
-                  HRD Corp · Aug 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/cert-smm.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Social Media Marketing Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  AI For My Future – Explore AI Basics
-                </div>
-                <div class="cert-issuer">
-                  Biji-biji Initiative · Aug 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/bijicert1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="AI For My Future – Explore AI Basics Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Explore Generative AI
-                </div>
-                <div class="cert-issuer">
-                  Biji-biji Initiative · Aug 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/bijicert2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Explore Generative AI Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Emcee Hosting Course
-                </div>
-                <div class="cert-issuer">
-                  HRD Corp · Sep 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/cert-emcee1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Emcee Hosting Course Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Introduction to Emcee Scriptwriting
-                </div>
-                <div class="cert-issuer">
-                  HRD Corp · Sep 2025
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/cert-emcee2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Introduction to Emcee Scriptwriting Certificate">
-              </div>
-            </div>
-          </div>
-          <div class="cert-card">
-            <div class="cert-main">
-              <div class="cert-icon">
-                ✦
-              </div>
-              <div>
-                <div class="cert-name">
-                  Cloud Computing Fundamentals
-                </div>
-                <div class="cert-issuer">
-                  RunCloud · Jan 2022
-                </div>
-              </div>
-            </div>
-            <div class="media-strip">
-              <div class="media-strip-label">
-                Certificate
-              </div>
-              <div class="media-row">
-                <img src="images/cert-cloud.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Cloud Computing Fundamentals Certificate">
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- LEADERSHIP -->
-      <section id="leadership">
-        <div class="sec-title">
-          Leadership &amp; Extracurricular
-        </div>
-        <div class="lead-card">
-          <div class="lead-main">
-            <div class="lead-header">
-              <div class="lead-role">
-                Secretary – SULAM (Service Learning Malaysia)
-              </div>
-              <div class="lead-period">
-                Mac 2026 – Ogos 2026
-              </div>
-            </div>
-            <div class="lead-org">
-              FSKM UiTM Jasin, Melaka
-            </div>
-            <ul class="lead-bullets">
-              <li>
-                Manage administrative matters and official documentation for the SULAM programme at faculty level.
-              </li>
-              <li>
-                Coordinate communication between 392 committee members to ensure smooth programme execution.
-              </li>
-            </ul>
-          </div>
-          <div class="lead-gallery">
-            <div class="lead-gallery-label">
-              Activity Photos
-            </div>
-            <div class="lead-gallery-grid">
-              <!-- HOW TO ADD: replace div below with <img src="images/sulam-1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="SULAM"> -->
-              <div class="gallery-placeholder">
-                <span class="gp-label">
-                Coming Soon
-                </span>
-              </div>
-              <div class="gallery-placeholder">
-                <span class="gp-label">
-                Coming Soon
-                </span>
-              </div>
-              <div class="gallery-placeholder">
-                <span class="gp-label">
-                Coming Soon
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="lead-card">
-          <div class="lead-main">
-            <div class="lead-header">
-              <div class="lead-role">
-                Emcee &amp; Event Volunteer
-              </div>
-              <div class="lead-period">
-                Mar 2025 – Present
-              </div>
-            </div>
-            <div class="lead-org">
-              UiTM Jasin, Melaka
-            </div>
-            <ul class="lead-bullets">
-              <li>
-                Emcee, Majlis Anugerah Dekan FSKM 2025 — faculty award ceremony with 200+ participants.
-              </li>
-              <li>
-                Floor Manager, Robotech Challenge Melaka 2025 — multi-school robotics competition.
-              </li>
-              <li>
-                Emcee, Recycle Better Future 2025 — university-wide multi-campus sustainability programme.
-              </li>
-              <li>
-                AJK Programme Townhall Anak Muda Penggerak Ekonomi Berpacukan Data, UiTM Jasin.
-              </li>
-              <li>
-                Event Committee Member, Top Coders – Coding Challenge 2025.
-              </li>
-            </ul>
-          </div>
-          <div class="lead-gallery">
-            <div class="lead-gallery-label">
-              Activity Photos
-            </div>
-            <div class="lead-gallery-grid">
-              <img src="images/dekan-emcee.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Majlis Anugerah Dekan FSKM 2025">
-              <img src="images/dekan-FSKM.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Majlis Anugerah Dekan FSKM 2025">
-              <img src="images/robotech1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Floor Manager – Robotech Challenge Melaka 2025">
-              <img src="images/robotech2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Robotech Challenge Melaka 2025">
-              <img src="images/recycle.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Recycle Better Future 2025">
-              <img src="images/townhall.jpg" class="gallery-img" onclick="openLb(this.src)" alt="AJK – Townhall Anak Muda Penggerak Ekonomi">
-              <img src="images/topcoders1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Event Committee – Top Coders Coding Challenge 2025">
-              <img src="images/topcoders2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Top Coders Coding Challenge 2025">
-              <img src="images/robotech1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Floor Manager – Robotech Challenge Melaka 2025">
-              <img src="images/recycle.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Recycle Better Future 2025">
-              <img src="images/townhall.jpg" class="gallery-img" onclick="openLb(this.src)" alt="AJK – Townhall Anak Muda Penggerak Ekonomi">
-              <img src="images/topcoders1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Event Committee – Top Coders Coding Challenge 2025">
-            </div>
-          </div>
-        </div>
-        <div class="lead-card">
-          <div class="lead-main">
-            <div class="lead-header">
-              <div class="lead-role">
-                EXCO – Protocols &amp; Corporate Relations, Student Sports Committee
-              </div>
-              <div class="lead-period">
-                Aug 2022 – Oct 2023
-              </div>
-            </div>
-            <div class="lead-org">
-              UiTM Kedah, Sungai Petani
-            </div>
-            <ul class="lead-bullets">
-              <li>
-                Programme Director, Inter-Committee Sports (SJAT) 2023 — managed 100+ participants.
-              </li>
-              <li>
-                Emcee &amp; Floor Manager, Campus Sports Carnival (KASUKA) 2023.
-              </li>
-              <li>
-                Emcee, Inter-Faculty Sports (SAF) 2022.
-              </li>
-            </ul>
-          </div>
-          <div class="lead-gallery">
-            <div class="lead-gallery-label">
-              Activity Photos
-            </div>
-            <div class="lead-gallery-grid">
-              <img src="images/sjat-emcee-2023.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Inter-Committee Sports SJAT 2023">
-              <img src="images/sjat-2023-jsp.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Inter-Committee Sports SJAT 2023">
-              <img src="images/kasuka-jsp-2023.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Campus Sports Carnival KASUKA 2023">
-              <img src="images/saf-2022-1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Inter-Faculty Sports SAF 2022">
-              <img src="images/saf-2022-2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Inter-Faculty Sports SAF 2022">
-              <img src="images/saf-2022-3.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Inter-Faculty Sports SAF 2022">
-              <img src="images/onDuty1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="On Duty – Sports Committee Event">
-              <img src="images/doraRun1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Dora Run Event">
-              <img src="images/doraRun2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Dora Run Participation">
-              <img src="images/colourRun1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Colour Run Event">
-              <img src="images/colourRun2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Colour Run Participation">
-              <img src="images/colourRun3.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Colour Run Team Photo">
-              <img src="images/jsp-Konvensyen.jpg" class="gallery-img" onclick="openLb(this.src)" alt="JSP Konvensyen">
-              <img src="images/kasuka-jsp-2023.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Campus Sports Carnival KASUKA 2023">
-              <img src="images/saf-2022-1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Inter-Faculty Sports SAF 2022">
-            </div>
-          </div>
-        </div>
-        <div class="lead-card">
-          <div class="lead-main">
-            <div class="lead-header">
-              <div class="lead-role">
-                EXCO Protocol – Cycom Club
-              </div>
-              <div class="lead-period">
-                Aug 2021 – Feb 2024
-              </div>
-            </div>
-            <div class="lead-org">
-              UiTM Kedah Branch, Sungai Petani
-            </div>
-            <ul class="lead-bullets">
-              <li>
-                Emcee &amp; Floor Manager, PA Day, Post-Syawal Banquet, and Reading Yasin FSKM 2023.
-              </li>
-              <li>
-                Emcee, Annual General Meeting Cycom 22/23 and 21/22.
-              </li>
-              <li>
-                Emcee, Dean's Award Ceremony of FSKM 2022.
-              </li>
-              <li>
-                Emcee, PA Day and FSKM 2022 Post-Syawal Banquet.
-              </li>
-            </ul>
-          </div>
-          <div class="lead-gallery">
-            <div class="lead-gallery-label">
-              Activity Photos
-            </div>
-            <div class="lead-gallery-grid">
-              <img src="images/cycom-fyp.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Cycom Club – PA Day FSKM">
-              <img src="images/cycom-agm.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Cycom Club – Annual General Meeting">
-              <img src="images/cycom-dekan.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Cycom Club – Dean's Award Ceremony FSKM">
-              <img src="images/cycom-emcee-raya.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Cycom Club – Post-Syawal Banquet Emcee">
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- PUBLICATIONS -->
-      <section id="publications">
-        <div class="sec-title">
-          Publications
-        </div>
-        <div class="pub-card">
-          <div class="pub-header">
-            <div class="pub-title">
-              Cabaran Toleransi Sosial Menerusi Kepelbagaian Agama dalam Masyarakat Majmuk di Malaysia
-            </div>
-            <div class="pub-period">
-              Apr 2025
-            </div>
-          </div>
-          <div class="pub-org">
-            UiTM Press
-          </div>
-          <ul class="pub-bullets">
-            <li>
-              Co-authored a research paper exploring social tolerance challenges in Malaysia's multi-religious society.
-            </li>
-            <li>
-              Conducted comprehensive literature review and data analysis to identify factors influencing social cohesion.
-            </li>
-            <li>
-              Contributed actionable recommendations for policymakers and community leaders.
-            </li>
-          </ul>
-        </div>
-      </section>
-      <!-- REFERENCE -->
-      <section id="reference">
-        <div class="sec-title">
-          Reference
-        </div>
-        <div class="ref-box">
-          <p style="font-size:.82rem;color:#aaa;margin-top:.4rem">
-            Available upon request
-          </p>
-        </div>
-        <div style="font-size:.83rem;color:#777">
-          Senior Lecturer · UiTM Jasin, Melaka
-        </div>
-        <p style="font-size:.82rem;color:#aaa;margin-top:.4rem">
-          Available upon request
-        </p>
       </div>
-    </section>
-  </main>
-  <footer>
-    &#169; 2026 Muhammad Daniel Bin Mohd Sahid &nbsp;&#183;&nbsp;
-    <a href="mailto:Danielsahid05@gmail.com">
-    Danielsahid05@gmail.com
-    </a>
-    &nbsp;&#183;&nbsp;
-    <a href="https://linkedin.com/in/danielsahid" target="_blank">
-    LinkedIn
-    </a>
-  </footer>
-  <script>
-  function openLb(src){ document.getElementById('lb-img').src=src; document.getElementById('lightbox').classList.add('open'); }
-  function closeLb(){ document.getElementById('lightbox').classList.remove('open'); }
-  document.getElementById('lightbox').addEventListener('click',function(e){ if(e.target===this) closeLb(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
-
-  const secs=document.querySelectorAll('section[id],#hero');
-  const lnks=document.querySelectorAll('#sidebar nav a');
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ lnks.forEach(l=>l.classList.remove('active')); const a=document.querySelector('#sidebar nav a[href="#'+e.target.id+'"]'); if(a)a.classList.add('active'); }});
-  },{threshold:0.2});
-  secs.forEach(s=>obs.observe(s));
-  lnks.forEach(l=>l.addEventListener('click',()=>document.getElementById('sidebar').classList.remove('open')));
+      <div class="edu-content">
+        <div class="edu-period"> Aug 2021 – Feb 2024
+        </div>
+        <div class="edu-degree"> Diploma in Computer Science
+        </div>
+        <div class="edu-school"> Universiti Teknologi MARA (UiTM), Merbok, Kedah
+        </div>
+        <div class="badges"> <span class="badge"> CGPA 3.94 </span> <span class="badge badge-gold"> &#127942; Dean's List All 5 Semesters </span> <span class="badge badge-gold"> &#127945; Anugerah Naib Canselor </span> <span class="badge"> MUET Band 4.0 </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-title"> Skills
+    </div>
+    <div class="skill-section">
+      <div class="skill-section-title"> Programming Languages
+      </div>
+      <div class="skill-icons">
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/> <span class="si-label"> Python </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"/> <span class="si-label"> Java </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"/> <span class="si-label"> C++ </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"/> <span class="si-label"> HTML </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"/> <span class="si-label"> CSS </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"/> <span class="si-label"> JavaScript </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"/> <span class="si-label"> PHP </span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-section">
+      <div class="skill-section-title"> Data &amp; AI Tools
+      </div>
+      <div class="skill-icons">
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter"/> <span class="si-label"> Jupyter </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Colaboratory_SVG_Logo.svg" alt="Colab"/> <span class="si-label"> Google Colab </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://1000logos.net/wp-content/uploads/2022/12/Power-BI-Logo-2013.png" alt="Power BI"/> <span class="si-label"> Power BI </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://img.icons8.com/color/1200/tableau-software.jpg" alt="Tableau"/> <span class="si-label"> Tableau </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Microsoft_Office_Excel_%282019%E2%80%932025%29.svg/1280px-Microsoft_Office_Excel_%282019%E2%80%932025%29.svg.png" alt="Excel"/> <span class="si-label"> Excel </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://image.pngaaa.com/798/5084798-middle.png" alt="Streamlit"/> <span class="si-label"> Streamlit </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Weka_%28software%29_logo.svg/1200px-Weka_%28software%29_logo.svg.png" alt="Weka"/> <span class="si-label"> Weka </span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-section">
+      <div class="skill-section-title"> Databases &amp; Backend
+      </div>
+      <div class="skill-icons">
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"/> <span class="si-label"> MySQL </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"/> <span class="si-label"> MongoDB </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle"/> <span class="si-label"> Oracle Apex </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tomcat/tomcat-original.svg" alt="JSP"/> <span class="si-label"> JSP/Servlets </span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-section">
+      <div class="skill-section-title"> Dev Tools &amp; Platforms
+      </div>
+      <div class="skill-icons">
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"/> <span class="si-label"> VS Code </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"/> <span class="si-label"> GitHub </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://images.seeklogo.com/logo-png/65/1/canva-logo-png_seeklogo-653227.png" alt="Canva"/> <span class="si-label"> Canva </span>
+        </div>
+        <div class="skill-icon-item"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress"/> <span class="si-label"> WordPress </span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-section">
+      <div class="skill-section-title"> Data &amp; AI Competencies
+      </div>
+      <div class="skill-icons"> <span class="skill-text-item"> Data Mining </span> <span class="skill-text-item"> Big Data Processing </span> <span class="skill-text-item"> Machine Learning </span> <span class="skill-text-item"> Predictive Analytics </span> <span class="skill-text-item"> Sentiment Analysis </span> <span class="skill-text-item"> NLP Basics </span> <span class="skill-text-item"> Database Management </span> <span class="skill-text-item"> Data Visualisation </span> <span class="skill-text-item"> Hybrid Filtering / Recommendation Systems </span>
+      </div>
+    </div>
+    <div class="skill-section">
+      <div class="skill-section-title"> Soft Skills &amp; Languages
+      </div>
+      <div class="skill-icons"> <span class="skill-text-item"> Public Speaking &amp; Emcee </span> <span class="skill-text-item"> Problem-Solving </span> <span class="skill-text-item"> Team Collaboration </span> <span class="skill-text-item"> Event Management </span> <span class="skill-text-item"> Bahasa Malaysia (Native) </span> <span class="skill-text-item"> English (MUET 4.0) </span> <span class="skill-text-item"> Indonesian (Conversational) </span>
+      </div>
+    </div>
+  </section>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-title"> Academic Projects
+    </div>
+    <div class="projects-grid">
+      <div class="proj-card">
+        <div class="proj-img"> &#128202;
+        </div>
+        <div class="proj-body">
+          <div class="proj-award"> 1st Place – Konvensyen Dataraya Melaka 2025
+          </div>
+          <div class="proj-title"> Securing Nation: Building Safe Communities Through Data
+          </div>
+          <div class="proj-desc"> Data storytelling project exploring population vs crime rate using DOSM datasets. Insights contributed toward Melaka Blueprint 2025.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> Python </span> <span class="tech-tag"> Excel </span> <span class="tech-tag"> Data Visualisation </span> <span class="tech-tag"> DOSM Dataset </span>
+          </div>
+          <div class="proj-date"> Oct 2025
+          </div> <a href="#" class="btn-view"> View Project </a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img"> &#127973;
+        </div>
+        <div class="proj-body">
+          <div class="proj-award"> Best Project – ISP565 Data Mining Exhibition
+          </div>
+          <div class="proj-title"> Diabetes Level Classification Using J48 Decision Tree
+          </div>
+          <div class="proj-desc"> Classified diabetes status using J48 Decision Tree on medical datasets. Awarded Best Project Overall at the exhibition.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> Machine Learning </span> <span class="tech-tag"> J48 Decision Tree </span> <span class="tech-tag"> Weka </span> <span class="tech-tag"> Data Mining </span>
+          </div>
+          <div class="proj-date"> May – Jul 2025
+          </div> <a href="#" class="btn-view"> View Project </a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img"> &#127869;&#65039;
+        </div>
+        <div class="proj-body">
+          <div class="proj-ongoing"> Final Year Project · Ongoing
+          </div>
+          <div class="proj-title"> RasaWarisan: Malaysian Emotion-Based Recipe Recommendation System
+          </div>
+          <div class="proj-desc"> AI-driven cuisine recommendation using hybrid filtering. Accepts mood, dietary needs, and preferences to suggest personalised Malaysian heritage recipes.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> Python </span> <span class="tech-tag"> Hybrid Filtering </span> <span class="tech-tag"> AI/ML </span> <span class="tech-tag"> Recommendation System </span>
+          </div>
+          <div class="proj-date"> Sep 2025 – Present
+          </div> <a href="#" class="btn-view"> View Project </a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img"> &#128218;
+        </div>
+        <div class="proj-body">
+          <div class="proj-award"> Course Assignment
+          </div>
+          <div class="proj-title"> Analyzing Student Study Habits Efficiency using Supervised ML
+          </div>
+          <div class="proj-desc"> Collected 500 survey responses; used Python and Streamlit for analysis and interactive dashboard.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> Python </span> <span class="tech-tag"> Machine Learning </span> <span class="tech-tag"> Streamlit </span>
+          </div>
+          <div class="proj-date"> Oct 2025 – Mar 2026
+          </div> <a href="#" class="btn-view"> View Report </a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img"> &#128248;
+        </div>
+        <div class="proj-body">
+          <div class="proj-award"> Course Assignment
+          </div>
+          <div class="proj-title"> ReWear Fashion System
+          </div>
+          <div class="proj-desc"> Sustainable fashion ordering system promoting second-hand clothing using JSP, Servlets, and MySQL.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> Java </span> <span class="tech-tag"> JSP </span> <span class="tech-tag"> Servlets </span> <span class="tech-tag"> MySQL </span>
+          </div>
+          <div class="proj-date"> Oct 2025 – Mar 2026
+          </div> <a href="#" class="btn-view"> View Report </a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img"> &#128172;
+        </div>
+        <div class="proj-body">
+          <div class="proj-award"> Course Assignment
+          </div>
+          <div class="proj-title"> Sentiment Analysis: ChatGPT vs Gemini (Google Play Store)
+          </div>
+          <div class="proj-desc"> Sentiment analysis comparing user reviews using Naive Bayes and SVM. Preprocessing done in RapidMiner.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> Python </span> <span class="tech-tag"> Naive Bayes </span> <span class="tech-tag"> SVM </span> <span class="tech-tag"> RapidMiner </span>
+          </div>
+          <div class="proj-date"> Oct 2025 – Mar 2026
+          </div> <a href="#" class="btn-view"> View Report </a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img"> &#129309;
+        </div>
+        <div class="proj-body">
+          <div class="proj-award"> Course Assignment
+          </div>
+          <div class="proj-title"> V-Buddy Mentorship System
+          </div>
+          <div class="proj-desc"> Web-based mentorship system connecting students with mentors using HTML, CSS, JavaScript, and MySQL.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> HTML </span> <span class="tech-tag"> CSS </span> <span class="tech-tag"> JavaScript </span> <span class="tech-tag"> MySQL </span>
+          </div>
+          <div class="proj-date"> Mar 2023 – Oct 2023
+          </div> <a href="#" class="btn-view"> View Report </a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img"> &#127973;
+        </div>
+        <div class="proj-body">
+          <div class="proj-award"> Course Assignment
+          </div>
+          <div class="proj-title"> Government Clinic Cheng Appointment Booking System
+          </div>
+          <div class="proj-desc"> Appointment booking system for a government clinic using Oracle Apex and Oracle Database.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> Oracle Apex </span> <span class="tech-tag"> Oracle Database </span>
+          </div>
+          <div class="proj-date"> Aug 2024 – Jan 2025
+          </div> <a href="#" class="btn-view"> View Report </a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img"> &#129504;
+        </div>
+        <div class="proj-body">
+          <div class="proj-award"> Research Project
+          </div>
+          <div class="proj-title"> EEG-Based Machine Learning for Detecting Major Depressive Disorder
+          </div>
+          <div class="proj-desc"> Explored ML techniques on EEG data to detect major depressive disorder and understand neurological markers.
+          </div>
+          <div class="proj-tech"> <span class="tech-tag"> EEG Analysis </span> <span class="tech-tag"> Machine Learning </span> <span class="tech-tag"> Scopus </span>
+          </div>
+          <div class="proj-date"> Sep 2025 – Jan 2026
+          </div> <a href="#" class="btn-view"> View Report </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-title"> Internship &amp; Work Experience
+    </div>
+    <div class="exp-card">
+      <div class="exp-main">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role"> Multimedia Designer &amp; IT Support
+            </div>
+            <div class="exp-org"> Yayasan Amal Kedah (YAM) · Sungai Petani, Kedah · <em> Internship </em>
+            </div>
+          </div>
+          <div class="exp-period"> Sep 2023 – Feb 2024
+          </div>
+        </div>
+        <ul class="exp-bullets">
+          <li> Designed 10+ digital campaign materials using Canva &amp; CapCut, boosting social media reach across Facebook &amp; TikTok.
+          </li>
+          <li> Managed content calendar for 2 platforms, improving posting consistency and audience engagement over 6 months.
+          </li>
+          <li> Maintained and updated organisation website via WordPress &amp; Google Sites, reducing content update turnaround by 50%.
+          </li>
+          <li> Resolved 8+ IT support tickets involving software issues, maintaining 100% operational uptime for office systems.
+          </li>
+        </ul>
+      </div>
+      <div class="media-strip">
+        <div class="media-strip-label"> Photos
+        </div>
+        <div class="media-row">
+          <img src="images/yam-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Yayasan Amal Kedah – Internship">
+          <img src="images/yam-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Yayasan Amal Kedah – Multimedia Design Work">
+          <img src="images/yam-3.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Yayasan Amal Kedah – IT Support">
+        </div>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-main">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role"> Crew Member
+            </div>
+            <div class="exp-org"> Hayyan Garden Cafe · Sungai Petani, Kedah
+            </div>
+          </div>
+          <div class="exp-period"> Apr 2021 – Jun 2021
+          </div>
+        </div>
+        <ul class="exp-bullets">
+          <li> Served 50+ customers daily with efficient front-of-house service, maintaining high satisfaction standards.
+          </li>
+          <li> Collaborated with a team of 5 to maintain dining area standards and consistent daily operations.
+          </li>
+        </ul>
+      </div>
+      <div class="media-strip">
+        <div class="media-strip-label"> Photos
+        </div>
+        <div class="media-row">
+          <img src="images/cafe-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Hayyan Garden Cafe – Work">
+          <img src="images/cafe-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Hayyan Garden Cafe – Team">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- AWARDS -->
+  <section id="awards">
+    <div class="sec-title"> Awards &amp; Achievements
+    </div>
+    <div class="awards-list">
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ★
+          </div>
+          <div>
+            <div class="award-title"> 1st Place – Data Storytelling, Konvensyen Dataraya Melaka
+            </div>
+            <div class="award-sub"> 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/award-dataraya-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="1st Place Certificate – Konvensyen Dataraya Melaka 2025">
+          <img src="images/award-dataraya-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Konvensyen Dataraya Melaka 2025 – Team Photo">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ★
+          </div>
+          <div>
+            <div class="award-title"> 1st Place – Best Project, ISP565 Data Mining Exhibition
+            </div>
+            <div class="award-sub"> UiTM Jasin · 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/datamining-cert.jpg" class="media-thumb" onclick="openLb(this.src)" alt="ISP565 Data Mining Exhibition – Certificate">
+          <img src="images/award-datamining.jpg" class="media-thumb" onclick="openLb(this.src)" alt="1st Place – ISP565 Data Mining Exhibition">
+          <img src="images/award-datamining-team.jpg" class="media-thumb" onclick="openLb(this.src)" alt="ISP565 Data Mining Exhibition – Team Photo">
+          <img src="images/award-datamining-booth.jpg" class="media-thumb" onclick="openLb(this.src)" alt="ISP565 Data Mining Exhibition – Project Booth">
+          <img src="images/award-datamining-team.jpg" class="media-thumb" onclick="openLb(this.src)" alt="ISP565 Data Mining Exhibition – Team Photo">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ◈
+          </div>
+          <div>
+            <div class="award-title"> Anugerah Naib Canselor (Vice-Chancellor's Award)
+            </div>
+            <div class="award-sub"> Diploma in Computer Science, UiTM · 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/anc-award-convo.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Anugerah Naib Canselor – Convocation Ceremony">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ◈
+          </div>
+          <div>
+            <div class="award-title"> Dean's List – Sem 3, 4 &amp; 5 (Bachelor) · CGPA 3.86
+            </div>
+            <div class="award-sub"> 2025–26
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/deanslist-deg-personal.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Bachelor's Degree Dean's List Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ★
+          </div>
+          <div>
+            <div class="award-title"> Gold Award – Youth Innovation Presentation
+            </div>
+            <div class="award-sub"> ISP250 &amp; CSC264, UiTM Kedah · 2023
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/youth1st-cert.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Youth Innovation Presentation – 1st Place Certificate">
+          <img src="images/gold-innovation.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Gold Award – Youth Innovation Presentation">
+          <img src="images/gold-innovation-team.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Youth Innovation Presentation – Team Photo">
+          <img src="images/gold-innovation-present.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Youth Innovation Presentation – Presenting">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ★
+          </div>
+          <div>
+            <div class="award-title"> Best Project Database – Youth Innovation Presentation
+            </div>
+            <div class="award-sub"> UiTM Kedah · 2023
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/best-db.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Best Project Database – Youth Innovation Presentation">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ◈
+          </div>
+          <div>
+            <div class="award-title"> Dean's List – All 5 Semesters (Diploma) · CGPA 3.94–3.96
+            </div>
+            <div class="award-sub"> 2022–24
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/Dipdean-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Diploma Dean's List – Semester 1">
+          <img src="images/Dipdean-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Diploma Dean's List – Semester 2">
+          <img src="images/Dipdean-3.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Diploma Dean's List – Semester 3">
+          <img src="images/Dipdean-4.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Diploma Dean's List – Semester 4" alt="Diploma Dean's List – Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ◈
+          </div>
+          <div>
+            <div class="award-title"> SPM Best Achievement Award
+            </div>
+            <div class="award-sub"> 2020
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/spm-award.jpg" class="media-thumb" onclick="openLb(this.src)" alt="SPM Best Achievement Award 2020">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ◈
+          </div>
+          <div>
+            <div class="award-title"> 2nd Place – CAKNA National Cybersecurity Challenge
+            </div>
+            <div class="award-sub"> Kedah State Level · 2020
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Evidence
+          </div>
+          <div class="media-row">
+          <img src="images/cakna-cert.jpg" class="media-thumb" onclick="openLb(this.src)" alt="CAKNA National Cybersecurity Challenge – Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-main">
+          <div class="award-icon"> ◈
+          </div>
+          <div>
+            <div class="award-title"> Student Exchange Programme – Japan, Series 58
+            </div>
+            <div class="award-sub"> Selected Participant · 2019
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Photos
+          </div>
+          <div class="media-row">
+          <img src="images/japan-1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Student Exchange Programme – Japan, Series 58">
+          <img src="images/japan-2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Japan Exchange Programme – Group Photo">
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="sec-title"> Certifications
+    </div>
+    <div class="cert-list">
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Google PM: Foundations of Project Management
+            </div>
+            <div class="cert-issuer"> Google · Coursera · Apr 2026
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/cert-gpm1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Google Project Management Certificate – Foundations">
+          <img src="images/cert-gpm1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Google Project Management Certificate – Foundations">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Google PM: Project Initiation – Starting a Successful Project
+            </div>
+            <div class="cert-issuer"> Google · Coursera · Apr 2026
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/cert-gpm2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Google Project Management Certificate – Project Initiation">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Google PM: Project Planning – Putting It All Together
+            </div>
+            <div class="cert-issuer"> Google · Coursera · Apr 2026
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/cert-gpm3.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Google Project Management Certificate – Project Planning">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> 2025 Aspire Leader Program
+            </div>
+            <div class="cert-issuer"> Aspire Institute · Dec 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/aspire-cert.jpg" class="media-thumb" onclick="openLb(this.src)" alt="2025 Aspire Leader Program Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Microsoft Excel Workshop
+            </div>
+            <div class="cert-issuer"> HRD Corp · Aug 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/cert-excel.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Microsoft Excel Workshop Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Social Engineering &amp; Phishing Workshop
+            </div>
+            <div class="cert-issuer"> 0day Academy · Apr 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/0dayCertSE.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Social Engineering and Phishing Workshop Certificate">
+          <img src="images/badge.png" class="media-thumb" onclick="openLb(this.src)" alt="0day Academy Workshop Badge">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Social Media Marketing
+            </div>
+            <div class="cert-issuer"> HRD Corp · Aug 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/cert-smm.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Social Media Marketing Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> AI For My Future – Explore AI Basics
+            </div>
+            <div class="cert-issuer"> Biji-biji Initiative · Aug 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/bijicert1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="AI For My Future – Explore AI Basics Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Explore Generative AI
+            </div>
+            <div class="cert-issuer"> Biji-biji Initiative · Aug 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/bijicert2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Explore Generative AI Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Emcee Hosting Course
+            </div>
+            <div class="cert-issuer"> HRD Corp · Sep 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/cert-emcee1.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Emcee Hosting Course Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Introduction to Emcee Scriptwriting
+            </div>
+            <div class="cert-issuer"> HRD Corp · Sep 2025
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/cert-emcee2.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Introduction to Emcee Scriptwriting Certificate">
+        </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-main">
+          <div class="cert-icon"> ✦
+          </div>
+          <div>
+            <div class="cert-name"> Cloud Computing Fundamentals
+            </div>
+            <div class="cert-issuer"> RunCloud · Jan 2022
+            </div>
+          </div>
+        </div>
+        <div class="media-strip">
+          <div class="media-strip-label"> Certificate
+          </div>
+          <div class="media-row">
+          <img src="images/cert-cloud.jpg" class="media-thumb" onclick="openLb(this.src)" alt="Cloud Computing Fundamentals Certificate">
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- LEADERSHIP -->
+  <section id="leadership">
+    <div class="sec-title"> Leadership &amp; Extracurricular
+    </div>
+    <div class="lead-card">
+      <div class="lead-main">
+        <div class="lead-header">
+          <div class="lead-role"> Secretary – SULAM (Service Learning Malaysia)
+          </div>
+          <div class="lead-period"> Mac 2026 – Ogos 2026
+          </div>
+        </div>
+        <div class="lead-org"> FSKM UiTM Jasin, Melaka
+        </div>
+        <ul class="lead-bullets">
+          <li> Manage administrative matters and official documentation for the SULAM programme at faculty level.
+          </li>
+          <li> Coordinate communication between 392 committee members to ensure smooth programme execution.
+          </li>
+        </ul>
+      </div>
+      <div class="lead-gallery">
+        <div class="lead-gallery-label"> Activity Photos
+        </div>
+        <div class="lead-gallery-grid">
+          <img src="images/sulam-1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="SULAM">
+        </div>
+          <div class="gallery-placeholder"> <span class="gp-label"> Coming Soon </span>
+          </div>
+          <div class="gallery-placeholder"> <span class="gp-label"> Coming Soon </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lead-card">
+      <div class="lead-main">
+        <div class="lead-header">
+          <div class="lead-role"> Emcee &amp; Event Volunteer
+          </div>
+          <div class="lead-period"> Mar 2025 – Present
+          </div>
+        </div>
+        <div class="lead-org"> UiTM Jasin, Melaka
+        </div>
+        <ul class="lead-bullets">
+          <li> Emcee, Majlis Anugerah Dekan FSKM 2025 — faculty award ceremony with 200+ participants.
+          </li>
+          <li> Floor Manager, Robotech Challenge Melaka 2025 — multi-school robotics competition.
+          </li>
+          <li> Emcee, Recycle Better Future 2025 — university-wide multi-campus sustainability programme.
+          </li>
+          <li> AJK Programme Townhall Anak Muda Penggerak Ekonomi Berpacukan Data, UiTM Jasin.
+          </li>
+          <li> Event Committee Member, Top Coders – Coding Challenge 2025.
+          </li>
+        </ul>
+      </div>
+      <div class="lead-gallery">
+        <div class="lead-gallery-label"> Activity Photos
+        </div>
+        <div class="lead-gallery-grid">
+          <img src="images/dekan-emcee.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Majlis Anugerah Dekan FSKM 2025">
+          <img src="images/dekan-FSKM.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Majlis Anugerah Dekan FSKM 2025">
+          <img src="images/robotech1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Floor Manager – Robotech Challenge Melaka 2025">
+          <img src="images/robotech2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Robotech Challenge Melaka 2025">
+          <img src="images/recycle.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Recycle Better Future 2025">
+          <img src="images/townhall.jpg" class="gallery-img" onclick="openLb(this.src)" alt="AJK – Townhall Anak Muda Penggerak Ekonomi">
+          <img src="images/topcoders1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Event Committee – Top Coders Coding Challenge 2025">
+          <img src="images/topcoders2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Top Coders Coding Challenge 2025">
+          <img src="images/robotech1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Floor Manager – Robotech Challenge Melaka 2025">
+          <img src="images/recycle.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Recycle Better Future 2025">
+          <img src="images/townhall.jpg" class="gallery-img" onclick="openLb(this.src)" alt="AJK – Townhall Anak Muda Penggerak Ekonomi">
+          <img src="images/topcoders1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Event Committee – Top Coders Coding Challenge 2025">
+        </div>
+      </div>
+    </div>
+    <div class="lead-card">
+      <div class="lead-main">
+        <div class="lead-header">
+          <div class="lead-role"> EXCO – Protocols &amp; Corporate Relations, Student Sports Committee
+          </div>
+          <div class="lead-period"> Aug 2022 – Oct 2023
+          </div>
+        </div>
+        <div class="lead-org"> UiTM Kedah, Sungai Petani
+        </div>
+        <ul class="lead-bullets">
+          <li> Programme Director, Inter-Committee Sports (SJAT) 2023 — managed 100+ participants.
+          </li>
+          <li> Emcee &amp; Floor Manager, Campus Sports Carnival (KASUKA) 2023.
+          </li>
+          <li> Emcee, Inter-Faculty Sports (SAF) 2022.
+          </li>
+        </ul>
+      </div>
+      <div class="lead-gallery">
+        <div class="lead-gallery-label"> Activity Photos
+        </div>
+        <div class="lead-gallery-grid">
+          <img src="images/sjat-emcee-2023.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Inter-Committee Sports SJAT 2023">
+          <img src="images/sjat-2023-jsp.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Inter-Committee Sports SJAT 2023">
+          <img src="images/kasuka-jsp-2023.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Campus Sports Carnival KASUKA 2023">
+          <img src="images/saf-2022-1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Inter-Faculty Sports SAF 2022">
+          <img src="images/saf-2022-2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Inter-Faculty Sports SAF 2022">
+          <img src="images/saf-2022-3.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Inter-Faculty Sports SAF 2022">
+          <img src="images/onDuty1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="On Duty – Sports Committee Event">
+          <img src="images/doraRun1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Dora Run Event">
+          <img src="images/doraRun2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Dora Run Participation">
+          <img src="images/colourRun1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Colour Run Event">
+          <img src="images/colourRun2.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Colour Run Participation">
+          <img src="images/colourRun3.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Colour Run Team Photo">
+          <img src="images/jsp-Konvensyen.jpg" class="gallery-img" onclick="openLb(this.src)" alt="JSP Konvensyen">
+          <img src="images/kasuka-jsp-2023.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Campus Sports Carnival KASUKA 2023">
+          <img src="images/saf-2022-1.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Emcee – Inter-Faculty Sports SAF 2022">
+        </div>
+      </div>
+    </div>
+    <div class="lead-card">
+      <div class="lead-main">
+        <div class="lead-header">
+          <div class="lead-role"> EXCO Protocol – Cycom Club
+          </div>
+          <div class="lead-period"> Aug 2021 – Feb 2024
+          </div>
+        </div>
+        <div class="lead-org"> UiTM Kedah Branch, Sungai Petani
+        </div>
+        <ul class="lead-bullets">
+          <li> Emcee &amp; Floor Manager, PA Day, Post-Syawal Banquet, and Reading Yasin FSKM 2023.
+          </li>
+          <li> Emcee, Annual General Meeting Cycom 22/23 and 21/22.
+          </li>
+          <li> Emcee, Dean's Award Ceremony of FSKM 2022.
+          </li>
+          <li> Emcee, PA Day and FSKM 2022 Post-Syawal Banquet.
+          </li>
+        </ul>
+      </div>
+      <div class="lead-gallery">
+        <div class="lead-gallery-label"> Activity Photos
+        </div>
+        <div class="lead-gallery-grid">
+          <img src="images/cycom-fyp.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Cycom Club – PA Day FSKM">
+          <img src="images/cycom-agm.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Cycom Club – Annual General Meeting">
+          <img src="images/cycom-dekan.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Cycom Club – Dean's Award Ceremony FSKM">
+          <img src="images/cycom-emcee-raya.jpg" class="gallery-img" onclick="openLb(this.src)" alt="Cycom Club – Post-Syawal Banquet Emcee">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="sec-title"> Publications
+    </div>
+    <div class="pub-card">
+      <div class="pub-header">
+        <div class="pub-title"> Cabaran Toleransi Sosial Menerusi Kepelbagaian Agama dalam Masyarakat Majmuk di Malaysia
+        </div>
+        <div class="pub-period"> Apr 2025
+        </div>
+      </div>
+      <div class="pub-org"> UiTM Press
+      </div>
+      <ul class="pub-bullets">
+        <li> Co-authored a research paper exploring social tolerance challenges in Malaysia's multi-religious society.
+        </li>
+        <li> Conducted comprehensive literature review and data analysis to identify factors influencing social cohesion.
+        </li>
+        <li> Contributed actionable recommendations for policymakers and community leaders.
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- REFERENCE -->
+  <section id="reference">
+    <div class="sec-title"> Reference
+    </div>
+    <div class="ref-box">
+      <p style="font-size:.82rem;color:#aaa;margin-top:.4rem"> Available upon request
+      </p>
+    </div>
+    <div style="font-size:.83rem;color:#777"> Senior Lecturer · UiTM Jasin, Melaka
+    </div>
+    <p style="font-size:.82rem;color:#aaa;margin-top:.4rem"> Available upon request
+    </p>
+  </div>
+</section>
+</main>
+<footer> &#169; 2026 Muhammad Daniel Bin Mohd Sahid &nbsp;&#183;&nbsp; <a href="mailto:Danielsahid05@gmail.com"> Danielsahid05@gmail.com </a> &nbsp;&#183;&nbsp; <a href="https://linkedin.com/in/danielsahid" target="_blank"> LinkedIn </a>
+</footer>
+<script>
+function openLb(src){ document.getElementById('lb-img').src=src; document.getElementById('lightbox').classList.add('open'); } function closeLb(){ document.getElementById('lightbox').classList.remove('open'); } document.getElementById('lightbox').addEventListener('click',function(e){ if(e.target===this) closeLb(); }); document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); }); const secs=document.querySelectorAll('section[id],#hero'); const lnks=document.querySelectorAll('#sidebar nav a'); const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ lnks.forEach(l=>l.classList.remove('active')); const a=document.querySelector('#sidebar nav a[href="#'+e.target.id+'"]'); if(a)a.classList.add('active'); }}); },{threshold:0.2}); secs.forEach(s=>obs.observe(s)); lnks.forEach(l=>l.addEventListener('click',()=>document.getElementById('sidebar').classList.remove('open')));
 </script>
 </body>
 </html>
